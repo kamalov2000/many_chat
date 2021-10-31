@@ -1,0 +1,184 @@
+<h2>Employees Information</h2>
+<row>
+  <div class="col-8 ">
+  </div>
+  <div class="col-4">
+    <!-- Кнопка запуска модального окна -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"  data-target="#new_section_modal">
+      Create An Employee
+    </button>
+  </div>
+</row>
+<!-- Модальное окно -->
+<div class="modal fade" id="new_section_modal" tabindex="-1" role="dialog" aria-labelledby="new_section_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title align-baseline" id="new_section_modal_title">Append Employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="form_new_user" method="POST" action="/test/mvc-test/mvc/employees/createEmployee/">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name Employee</label>
+            <input type="text" name="name" required="required" class="form-control" id="name" aria-describedby="name">
+          </div>
+
+          <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" name="first_name" required="required" class="form-control" id="first_name" aria-describedby="first_name">
+          </div>
+
+          <div class="mb-3">
+            <label for="second_name" class="form-label">Second Name</label>
+            <input type="text" name="second_name" required="required" class="form-control" id="second_name" aria-describedby="second_name">
+          </div>
+
+          <div class="mb-3">
+            <label for="male" class="form-label">Sex</label>
+            <select class="form-control" aria-describedby="male" name="male" id="male">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="date_birth" class="form-label">Date Birth</label>
+            <input type="date" name="date_birth" required="required" class="form-control" id="date_birth" aria-describedby="date_birth">
+          </div>
+
+          <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" name="salary" required="required" class="form-control" id="salary" aria-describedby="salary">
+          </div>
+
+          <div class="mb-3">
+            <label for="id_department" class="form-label">Name Department</label>
+              <select class="form-control" aria-describedby="id_department" name="id_department" id="id_department">
+                <?php foreach ($this->dep_list as $value):?>
+                <option value="<?php echo $value['id']?>"><?php echo $value['name']?></option>
+              <?php endforeach;?>
+              </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="id_project" class="form-label">Name Project</label>
+              <select class="form-control" aria-describedby="id_project" name="id_project" id="id_project">
+                <option value="0">0</option>
+                <?php foreach ($this->pr_list as $value):?>
+                <option value="<?php echo $value['id']?>"><?php echo $value['name']?></option>
+              <?php endforeach;?>
+              </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="add_new_user" onclick="add_new_user()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Модальное edit окно -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit_section_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title align-baseline" id="edit_section_modal_title">Add Employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="form_new_user" method="POST" action="">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" required="required" class="form-control" id="name" aria-describedby="name">
+          </div>
+
+          <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" name="first_name" required="required" class="form-control" id="first_name" aria-describedby="first_name">
+          </div>
+
+          <div class="mb-3">
+            <label for="second_name" class="form-label">Second Name</label>
+            <input type="text" name="second_name" required="required" class="form-control" id="second_name" aria-describedby="second_name">
+          </div>
+
+          <div class="mb-3">
+            <label for="male" class="form-label">Sex</label>
+            <select class="form-control" aria-describedby="male" name="male" id="male">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="date_birth" class="form-label">Date Birth</label>
+            <input type="date" name="date_birth" required="required" class="form-control" id="date_birth" aria-describedby="date_birth">
+          </div>
+
+          <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" name="salary" required="required" class="form-control" id="salary" aria-describedby="salary">
+          </div>
+
+          <div class="mb-3">
+            <label for="id_department" class="form-label">ID Department </label>
+            <input type="text" name="id_department" required="required" class="form-control" id="id_department" aria-describedby="id_department">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="add_new_user" onclick="add_new_user()">Добавить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table" id="table_section_list">
+  <thead>
+    <tr>
+      <th scope="col">Id Department</th>
+      <th scope="col">Name Department</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Second Name</th>
+      <th scope="col">Male</th>
+      <th scope="col">Date Birth</th>
+      <th scope="col">Salary</th>
+      <th scope="col">ID Department</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($this->user_list as $value):?>
+    <tr data-id="<?=$value['id']?>">
+      <th scope="col"><?=$value['id']?></th>
+      <td data-target="name"><?=$value['name']?></td>
+      <td data-target="first_name"><?=$value['first_name']?></td>
+      <td data-target="second_name"><?=$value['second_name']?></td>
+      <td data-target="male"><?=$value['male']?></td>
+      <td data-target="date_birth"><?=$value['date_birth']?></td>
+      <td data-target="salary"><?=$value['salary']?></td>
+      <td data-target="id_department"><?=$value['id_department']?></td>
+      <td class="text-right">
+        <button type="button" class="btn btn-outline-primary btn-sm"><a href="#" data-role="update" data-id="<?=$value['id']?>">Edit</a></button>
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="user_del(<?=$value['id']?>)">Delete</button>
+      </td>
+    </tr>
+    <?php endforeach;?>
+  </tbody>
+</table>
+</section>
+<td class="text-right">
+  <button type="button" class="btn btn-outline-primary btn-sm"><a href="#" data-role="update" data-id="<?=$value['id']?>">Edit</a></button>
+  <button type="button" class="btn btn-outline-danger btn-sm" onclick="user_del(<?=$value['id']?>)">Delete</button>
+</td>

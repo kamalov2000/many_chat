@@ -1,0 +1,25 @@
+body {
+  padding: 0;
+  background-color: #b5ffb5;
+}
+p.error {
+  color: red;
+}
+#header {
+  padding: 20px;
+  background-color: gold;
+} #footer{
+  padding: 20px;
+  background-color: white;
+}
+#main_container {
+  padding: 20px;
+  background-color: white;
+}
+.error_input {
+  border-color: red;
+
+}
+.complet_input {
+  border-color: greenyellow;
+}
